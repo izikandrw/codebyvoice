@@ -1,0 +1,37 @@
+# glossary
+* NatLink - extends Dragon Naturally Speaking
+* Dragonfly - extends Natlink. python
+  * Dragonfly does NOT run. It's just a python library
+* Aenea - sends dragonfly commands over local network
+
+# how to install dragonfly
+* dragonfly is a python library
+* http://dragonfly.readthedocs.io/en/latest/installation.html
+
+# how to find already existing grammars
+http://dragonfly.readthedocs.io/en/latest/related_resources.html
+
+# how to create a dragonfly grammars
+````
+from dragonfly.all import Grammar, CompoundRule
+
+# Voice command rule combining spoken form and recognition processing.
+class ExampleRule(CompoundRule):
+    spec = "do something computer"                  # Spoken form of command.
+    def _process_recognition(self, node, extras):   # Callback when command is spoken.
+        print "Voice command spoken."
+
+# Create a grammar which contains and loads the command rule.
+grammar = Grammar("example grammar")                # Create a grammar to contain the command rule.
+grammar.add_rule(ExampleRule())                     # Add the command rule to the grammar.
+grammar.load()
+````
+
+* make a new python file
+
+# how to deploy the grammar
+
+1. put the file in Natlink macro directoy--probably something like `C:\NatLink\NatLink\MacroSystem`
+2. say `force natlink to reload all grammars`--this will reload all the python files in the directory
+
+# how to make a dragonfly grammar an aenea grammar
