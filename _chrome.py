@@ -9,7 +9,7 @@ rules = MappingRule(
     mapping = {
       "edit": Key("w-a"),
       "reload" : Key("f5"),
-      "open": Key("escape, o"),
+      "open tab": Key("c-t"),
       "new tab": Key("c-t"),
       "search tabs": Key("T"),
       "find": Key("c-f"),
