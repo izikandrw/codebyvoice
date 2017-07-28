@@ -1,15 +1,13 @@
 from dragonfly import (Grammar, AppContext, MappingRule, Dictation, Key, Text, Integer, Mimic)
 
-grammar = Grammar("git")
+grammar = Grammar("globalcommands")
+noSpaceNoCaps = Mimic("\\no-caps-on") + Mimic("\\no-space-on")
 
 rules = MappingRule(
-    name = "git",
+    name = "globalcommands",
     mapping = {
-      "get status": Text("git status") + Key("enter"),
-      "get add all": Text("git add .") + Key("enter"),
-      "get commit <text>": Text("git commit -m \"%(text)s\""),
-      "get push": Text("git push") + Key("enter")
-    },
+      "switch" : Key("a-tab")
+      },
     extras = [
         Dictation("text"),
         Integer("n", 0, 20000),
