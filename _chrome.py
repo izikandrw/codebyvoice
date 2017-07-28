@@ -17,6 +17,11 @@ rules = MappingRule(
       "developer tools": Key("cs-i"),
       "close tab": Key("c-w"),
       "escape": Key('escape'),
+      "first tab": Key("c-1"),
+      "Second tab": Key("c-2"),
+      "Third tab": Key("c-3"),
+      "Fourth tab": Key("c-4"),
+      "Fifth tab": Key("c-5")
       },
     extras = [
         Dictation("text"),
