@@ -12,8 +12,21 @@ rules = MappingRule(
       "stop debug": Key("s-f5"),
       "open file": Key("c-comma"),
       "search": Key("c-f"),
-      "solution explorer": Key("ca-l")
+      "solution explorer": Key("ca-l"),
+      "continue": Key("f5"),
+      "step": Key("f10"),
+      "step into": Key("f11"),
+      "step out": Key("s-f11"),
+      "breakpoint": Key("f9"),
+      "line number": Key("c-g"),
+      "comment": Key("c-k") + Key("c-c"),
+      "uncomment": Key("c-k") + Key("c-u"),
+      "immediate": Key("ca-i"),
+      "call stack": Key("ca-c"),
+      "next pane": Key("a-f6"),
+      "pending": Key("c-k") + Key("c")
       },
+
     extras = [
         Dictation("text"),
         Integer("n", 0, 20000),

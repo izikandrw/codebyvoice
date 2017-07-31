@@ -6,7 +6,12 @@ noSpaceNoCaps = Mimic("\\no-caps-on") + Mimic("\\no-space-on")
 rules = MappingRule(
     name = "globalcommands",
     mapping = {
-      "switch" : Key("a-tab")
+      "switch" : Key("a-tab"),
+      "find" : Key("c-f"),
+      "save" : Key("c-s"),
+      "close tab": Key("c-w"),
+      "open" : Key("c-o"),
+      "open file": Key("c-o")
       },
     extras = [
         Dictation("text"),
