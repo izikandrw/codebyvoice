@@ -71,6 +71,17 @@ except ImportError:
 
 from dragonfly import *
 
+from format import (
+    camel_case_count,
+    pascal_case_count,
+    snake_case_count,
+    squash_count,
+    expand_count,
+    uppercase_count,
+    lowercase_count,
+    format_text,
+    FormatTypes as ft,
+)
 
 #---------------------------------------------------------------------------
 # Here we globally defined the release action which releases all
@@ -133,6 +144,12 @@ config.cmd.map    = Item(
 
      "dragonfly":                   Text("cd C:\NatLink\NatLink\MacroSystem") + Key("enter"),
 
+     # Format dictated words. See the formatMap for all available types.
+    # Ex: "camel case my new variable" -> "myNewVariable"
+    # Ex: "snake case my new variable" -> "my_new_variable
+    # Ex: "uppercase squash my new hyphen variable" -> "MYNEW-VARIABLE"
+    "<formatType> <text>": Function(format_text),
+
      "say <text>":                       release + Text("%(text)s"),
      "mimic <text>":                     release + Mimic(extra="text"),
     },
@@ -142,6 +159,266 @@ config.cmd.map    = Item(
     }
 )
 namespace = config.load()
+
+letterMap = {
+    "(A|alpha)": "a",
+    "(B|bravo) ": "b",
+    "(C|charlie) ": "c",
+    "(D|delta) ": "d",
+    "(E|echo) ": "e",
+    "(F|foxtrot) ": "f",
+    "(G|golf) ": "g",
+    "(H|hotel) ": "h",
+    "(I|india|indigo) ": "i",
+    "(J|juliet) ": "j",
+    "(K|kilo) ": "k",
+    "(L|lima) ": "l",
+    "(M|mike) ": "m",
+    "(N|november) ": "n",
+    "(O|oscar) ": "o",
+    "(P|papa|poppa) ": "p",
+    "(Q|quebec|quiche) ": "q",
+    "(R|romeo) ": "r",
+    "(S|sierra) ": "s",
+    "(T|tango) ": "t",
+    "(U|uniform) ": "u",
+    "(V|victor) ": "v",
+    "(W|whiskey) ": "w",
+    "(X|x-ray) ": "x",
+    "(Y|yankee) ": "y",
+    "(Z|zulu) ": "z",
+}
+
+numberMap = {
+    "zero": "0",
+    "one": "1",
+    "two": "2",
+    "three": "3",
+    "four": "4",
+    "five": "5",
+    "six": "6",
+    "seven": "7",
+    "eight": "8",
+    "nine": "9",
+}
+
+formatMap = {
+    "camel case": ft.camelCase,
+    "pascal case": ft.pascalCase,
+    "snake case": ft.snakeCase,
+    "uppercase": ft.upperCase,
+    "lowercase": ft.lowerCase,
+    "squash": ft.squash,
+    "lowercase squash": [ft.squash, ft.lowerCase],
+    "uppercase squash": [ft.squash, ft.upperCase],
+    "squash lowercase": [ft.squash, ft.lowerCase],
+    "squash uppercase": [ft.squash, ft.upperCase],
+    "dashify": ft.dashify,
+    "lowercase dashify": [ft.dashify, ft.lowerCase],
+    "uppercase dashify": [ft.dashify, ft.upperCase],
+    "dashify lowercase": [ft.dashify, ft.lowerCase],
+    "dashify uppercase": [ft.dashify, ft.upperCase],
+    "dotify": ft.dotify,
+    "lowercase dotify": [ft.dotify, ft.lowerCase],
+    "uppercase dotify": [ft.dotify, ft.upperCase],
+    "dotify lowercase": [ft.dotify, ft.lowerCase],
+    "dotify uppercase": [ft.dotify, ft.upperCase],
+    "say": ft.spokenForm,
+    "environment variable": [ft.snakeCase, ft.upperCase],
+}
+
+abbreviationMap = {
+    "administrator": "admin",
+    "administrators": "admins",
+    "application": "app",
+    "applications": "apps",
+    "argument": "arg",
+    "arguments": "args",
+    "attribute": "attr",
+    "attributes": "attrs",
+    "(authenticate|authentication)": "auth",
+    "binary": "bin",
+    "button": "btn",
+    "class": "cls",
+    "command": "cmd",
+    "(config|configuration)": "cfg",
+    "context": "ctx",
+    "control": "ctrl",
+    "database": "db",
+    "(define|definition)": "def",
+    "description": "desc",
+    "(develop|development)": "dev",
+    "(dictionary|dictation)": "dict",
+    "(direction|directory)": "dir",
+    "dynamic": "dyn",
+    "example": "ex",
+    "execute": "exec",
+    "exception": "exc",
+    "expression": "exp",
+    "(extension|extend)": "ext",
+    "function": "func",
+    "framework": "fw",
+    "(initialize|initializer)": "init",
+    "instance": "inst",
+    "integer": "int",
+    "iterate": "iter",
+    "java archive": "jar",
+    "javascript": "js",
+    "keyword": "kw",
+    "keyword arguments": "kwargs",
+    "language": "lng",
+    "library": "lib",
+    "length": "len",
+    "number": "num",
+    "object": "obj",
+    "okay": "ok",
+    "package": "pkg",
+    "parameter": "param",
+    "parameters": "params",
+    "pixel": "px",
+    "position": "pos",
+    "point": "pt",
+    "previous": "prev",
+    "property": "prop",
+    "python": "py",
+    "query string": "qs",
+    "reference": "ref",
+    "references": "refs",
+    "(represent|representation)": "repr",
+    "regular (expression|expressions)": "regex",
+    "request": "req",
+    "revision": "rev",
+    "ruby": "rb",
+    "session aidee": "sid",  # "session id" didn't work for some reason.
+    "source": "src",
+    "(special|specify|specific|specification)": "spec",
+    "standard": "std",
+    "standard in": "stdin",
+    "standard out": "stdout",
+    "string": "str",
+    "(synchronize|synchronous)": "sync",
+    "system": "sys",
+    "utility": "util",
+    "utilities": "utils",
+    "temporary": "tmp",
+    "text": "txt",
+    "value": "val",
+    "window": "win",
+}
+
+# Modifiers for the press-command, if only the modifier is pressed.
+singleModifierMap = {
+    "alt": "alt",
+    "control": "ctrl",
+    "shift": "shift",
+    "super": "win",
+}
+
+# Modifiers for the press-command.
+modifierMap = {
+    "alt": "a",
+    "control": "c",
+    "shift": "s",
+    "super": "w",
+}
+
+# For repeating of characters.
+specialCharMap = {
+    "(bar|vertical bar|pipe)": "|",
+    "(dash|minus|hyphen)": "-",
+    "(dot|period)": ".",
+    "comma": ",",
+    "backslash": "\\",
+    "underscore": "_",
+    "(star|asterisk)": "*",
+    "colon": ":",
+    "(semicolon|semi-colon)": ";",
+    "at": "@",
+    "[double] quote": '"',
+    "single quote": "'",
+    "hash": "#",
+    "dollar": "$",
+    "percent": "%",
+    "and": "&",
+    "slash": "/",
+    "equal": "=",
+    "plus": "+",
+    "space": " "
+}
+
+reservedWord = {
+    "up": "up",
+    "down": "down",
+    "left": "left",
+    "right": "right",
+    "home": "home",
+    "end": "end",
+    "space": "space",
+    "tab": "tab",
+    "backspace": "backspace",
+    "delete": "delete",
+    "enter": "enter",
+    "paste": "paste",
+    "copy": "copy",
+    "cut": "cut",
+    "undo": "undo",
+    "release": "release",
+    "page up": "page up",
+    "page down": "page down",
+    "say": "say",
+    "select": "select",
+    "select all": "select all",
+    "abbreviate": "abbreviate",
+    "uppercase": "uppercase",
+    "lowercase": "lowercase",
+    "expand": "expand",
+    "squash": "squash",
+    "dash": "dash",
+    "underscore": "underscore",
+    "dot": "dot",
+    "period": "period",
+    "minus": "minus",
+    "semi-colon": "semi-colon",
+    "hyphen": "hyphen",
+    "triple": "triple"
+}
+
+controlKeyMap = {
+    "left": "left",
+    "right": "right",
+    "up": "up",
+    "down": "down",
+    "page up": "pgup",
+    "page down": "pgdown",
+    "home": "home",
+    "end": "end",
+    "space": "space",
+    "(enter|return)": "enter",
+    "escape": "escape",
+    "tab": "tab"
+}
+
+# F1 to F12.
+functionKeyMap = {
+    'F one': 'f1',
+    'F two': 'f2',
+    'F three': 'f3',
+    'F four': 'f4',
+    'F five': 'f5',
+    'F six': 'f6',
+    'F seven': 'f7',
+    'F eight': 'f8',
+    'F nine': 'f9',
+    'F ten': 'f10',
+    'F eleven': 'f11',
+    'F twelve': 'f12',
+}
+
+pressKeyMap = {}
+pressKeyMap.update(letterMap)
+pressKeyMap.update(numberMap)
+pressKeyMap.update(controlKeyMap)
+pressKeyMap.update(functionKeyMap)
 
 #---------------------------------------------------------------------------
 # Here we prepare the list of formatting functions from the config file.
@@ -204,7 +481,15 @@ class KeystrokeRule(MappingRule):
                 IntegerRef("n", 1, 100),
                 Dictation("text"),
                 Dictation("text2"),
-               ]
+                Choice("char", specialCharMap),
+                Choice("modifier1", modifierMap),
+                Choice("modifier2", modifierMap),
+                Choice("modifierSingle", singleModifierMap),
+                #Choice("pressKey", pressKeyMap),
+                Choice("formatType", formatMap),
+                Choice("abbreviation", abbreviationMap),
+                Choice("reservedWord", reservedWord)
+                ]
     defaults = {
                 "n": 1,
                }
@@ -214,7 +499,6 @@ class KeystrokeRule(MappingRule):
     #  of the MappingRule class' value() method.  It also
     #  substitutes any "%(...)." within the action spec
     #  with the appropriate spoken values.
-
 
 #---------------------------------------------------------------------------
 # Here we create an element which is the sequence of keystrokes.

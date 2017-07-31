@@ -11,7 +11,8 @@ rules = MappingRule(
       "save" : Key("c-s"),
       "close tab": Key("c-w"),
       "open" : Key("c-o"),
-      "open file": Key("c-o")
+      "open file": Key("c-o"),
+      "select all": Key("c-a")
       },
     extras = [
         Dictation("text"),
