@@ -21,7 +21,8 @@ rules = MappingRule(
       "Second tab": Key("c-2"),
       "Third tab": Key("c-3"),
       "Fourth tab": Key("c-4"),
-      "Fifth tab": Key("c-5")
+      "Fifth tab": Key("c-5"),
+      "address": Key("c-l")
       },
     extras = [
         Dictation("text"),
