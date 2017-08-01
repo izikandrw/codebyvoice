@@ -48,12 +48,12 @@ be represented by the following simplified language model:
        - *KeystrokeRule* -- rule that maps a single
          spoken-form to an action
     - *optional* -- optional specification of repeat count
-       - *integer* -- repeat count (name = "n")
+       - *integer* -- repeat count (name = "n")You would
        - *literal* -- "times"
 
 The top-level command rule has a callback method which is
 called when this voice command is recognized.  The logic
-within this callback is very simple:
+within this callback is very simple
 
 1. Retrieve the sequence of actions from the element with
    the name "sequence".
@@ -485,7 +485,7 @@ class KeystrokeRule(MappingRule):
                 Choice("modifier1", modifierMap),
                 Choice("modifier2", modifierMap),
                 Choice("modifierSingle", singleModifierMap),
-                #Choice("pressKey", pressKeyMap),
+                Choice("pressKey", pressKeyMap),
                 Choice("formatType", formatMap),
                 Choice("abbreviation", abbreviationMap),
                 Choice("reservedWord", reservedWord)

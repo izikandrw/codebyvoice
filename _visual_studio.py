@@ -25,7 +25,10 @@ rules = MappingRule(
       "immediate": Key("ca-i"),
       "call stack": Key("ca-c"),
       "next pane": Key("a-f6"),
-      "pending": Key("c-k") + Key("c")
+      "pending": Key("c-k") + Key("c"),
+      "rebuild": Key("cs-r"),
+      "delete line": Key("cs-l"),
+      "close all": Key("cs-o")
       },
 
     extras = [

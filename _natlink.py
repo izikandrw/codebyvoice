@@ -1,4 +1,3 @@
-from dragonfly import (Grammar, AppContext, MappingRule, Dictation, Key, Text, Integer, Mimic)
 import dragonfly
 import natlinkmain
 import os
@@ -55,7 +54,8 @@ def reload_code():
 rules = MappingRule(
     name = "natlink",
     mapping = {
-      'reload grammars': dragonfly.Function(reload_code)
+      'reload grammars': dragonfly.Function(reload_code),
+      'code repo': Text('cd /mnt/c/NatLink/NatLink/MacroSystem') + Key('enter')
     },
     extras = [
         Dictation("text"),
