@@ -11,6 +11,7 @@ rules = MappingRule(
       "debug" : Key("f5"),
       "stop debug": Key("s-f5"),
       "open file": Key("c-comma"),
+      "find file": Key("c-comma"),
       "search": Key("c-f"),
       "solution explorer": Key("ca-l"),
       "continue": Key("f5"),
