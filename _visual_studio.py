@@ -8,7 +8,7 @@ noSpaceNoCaps = Mimic("\\no-caps-on") + Mimic("\\no-space-on")
 rules = MappingRule(
     name = "visualStudio",
     mapping = {
-      "debug" : Key("f5"),
+      "[start] debug" : Key("f5"),
       "stop debug": Key("s-f5"),
       "open file": Key("c-comma"),
       "find file": Key("c-comma"),
@@ -28,7 +28,9 @@ rules = MappingRule(
       "pending": Key("c-k") + Key("c"),
       "rebuild": Key("cs-r"),
       "delete line": Key("cs-l"),
-      "close all": Key("cs-o")
+      "delete until end": Key("cs-w"),
+      "close all": Key("cs-o"),
+      "collapse": Key("c-minus")
       },
 
     extras = [

@@ -10,6 +10,7 @@ rules = MappingRule(
       "find" : Key("c-f"),
       "save" : Key("c-s"),
       "close tab": Key("c-w"),
+      "new tab": Key("c-t"),
       "open" : Key("c-o"),
       "open file": Key("c-o"),
       "select all": Key("c-a")
