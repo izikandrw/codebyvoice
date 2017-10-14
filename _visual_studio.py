@@ -13,7 +13,8 @@ rules = MappingRule(
       "open file": Key("c-comma"),
       "find file": Key("c-comma"),
       "search": Key("c-f"),
-      "solution explorer": Key("ca-l"),
+      "[solution] explorer": Key("ca-l"),
+      "server explorer": Key("ca-s"),
       "continue": Key("f5"),
       "step": Key("f10"),
       "step into": Key("f11"),
@@ -25,12 +26,16 @@ rules = MappingRule(
       "immediate": Key("ca-i"),
       "call stack": Key("ca-c"),
       "next pane": Key("a-f6"),
+      "close tool": Key("s-escape"),
       "pending": Key("c-k") + Key("c"),
       "rebuild": Key("cs-r"),
       "delete line": Key("cs-l"),
       "delete until end": Key("cs-w"),
       "close all": Key("cs-o"),
-      "collapse": Key("c-minus")
+      "collapse": Key("c-minus"),
+      "call stack": Key("ca-c"),
+      "history": Key("cs-h"),
+      "execute [sql]": Key("cs-e")
       },
 
     extras = [

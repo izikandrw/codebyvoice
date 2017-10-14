@@ -9,6 +9,7 @@ rules = MappingRule(
     mapping = {
       "edit": Key("w-a"),
       "reload" : Key("f5"),
+      "refresh": Key("f5"),
       "open tab": Key("c-t"),
       "new tab": Key("c-t"),
       "search tabs": Key("T"),
@@ -22,7 +23,13 @@ rules = MappingRule(
       "Third tab": Key("c-3"),
       "Fourth tab": Key("c-4"),
       "Fifth tab": Key("c-5"),
-      "address": Key("c-l")
+      "address": Key("c-l"),
+      "continue": Key("f8"),
+      "step": Key("f10"),
+      "step into": Key("f11"),
+      "step out": Key("s-f11"),
+      "back to page": Key("f6") + Key("f6") + Key("f6"),
+      "back to developer tools": Key("f6")
       },
     extras = [
         Dictation("text"),

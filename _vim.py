@@ -12,44 +12,34 @@ from dragonfly import (
 context = AppContext(executable="bash")
 grammarCommand = Grammar("Vim command grammar", context=context)
 
-context = AppContext(executable="bash")
-grammarInsert = Grammar("Vim insert grammar", context=context)
-
-def enable_insert_mode(char):
-    global grammarCommand
-    print("in enable_insert_mode")
-    global grammarInsert
-    grammarCommand.disable()
-    grammarInsert.enable()
-    Key(char).execute()
-
 def enable_command_mode():
-    global grammarCommand
-    global grammarInsert
-    grammarCommand.enable()
-    grammarInsert.disable()
     Key("escape").execute()
 
 commandMode = MappingRule(
     mapping={
         "tim": Text("vim") + Key("enter"),
-        "append [text]": Function(enable_insert_mode, char="a"),
-        "append [text] (to|at) end [of line]": Function(enable_insert_mode, char="A"),  # @IgnorePep8
-        "copy [(line|lines)]": Key("y, y"),
-        "insert ([text [before]]|mode)": Function(enable_insert_mode, char="i"),  # @IgnorePep8
-        "insert [text] at beginning [of line]": Function(enable_insert_mode, char="I"),  # @IgnorePep8
-        "insert line before": Function(enable_insert_mode, char="O"),
-        "insert line after": Function(enable_insert_mode, char="o"),
+        #"append [text]": Function(enable_insert_mode, char="a"),
+        #"append [text] (to|at) end [of line]": Function(enable_insert_mode, char="A"),  # @IgnorePep8
+        #"insert ([text [before]]|mode)": Function(enable_insert_mode, char="i"),  # @IgnorePep8
+        #"insert [text] at beginning [of line]": Function(enable_insert_mode, char="I"),  # @IgnorePep8
+        "insert line before": Function(enable_command_mode) + Key("O"),
+        "insert line after": Function(enable_command_mode) + Key("o"),
         "page up": Key("c-b, c-b"),
         "page down": Key("c-f"),
-        "paste [(line|lines)]": Key("p"),
-        "save": Key("colon, w, enter"),
-        "save and exit": Key("colon, x, space"),
+        "delete line": Function(enable_command_mode) + Key("d, d"),
+        "delete line": Function(enable_command_mode) + Key("d, d"),
+        "duplicate line": Function(enable_command_mode) + Key("y, y, p"),
+        "paste [(line|lines)]": Function(enable_command_mode) + Key("p"),
+        "save": Function(enable_command_mode) + Key("colon, w, enter"),
+        "save and exit": Function(enable_command_mode) + Key("colon, w, q, enter"),
         "save as": Key("colon, w, space"),
         "undo": Function(enable_command_mode) + Key("u"),
-        "cut [(line|lines)]": Key("d, d"),
         "quit": Function(enable_command_mode) + Text(":q") + Key("enter"),
         "force quit": Function(enable_command_mode) + Text(":q!") + Key("enter"),
+        "force quit all": Function(enable_command_mode) + Text(":qa!") + Key("enter"),
+        "yank": Function(enable_command_mode) + Key("y, y"),
+        "yank all": Function(enable_command_mode) + Key("g, g, y, G"),
+        "insert": Function(enable_command_mode) + Key("i"),
         #Navigation
         "top": Function(enable_command_mode) + Key("H"),
         "mid": Function(enable_command_mode) + Key("M"),
@@ -59,7 +49,7 @@ commandMode = MappingRule(
         "tree": Function(enable_command_mode) + Text(":NERDTreeToggle") + Key("enter"),
         "bookmark config": Function(enable_command_mode) + Text(":OpenBookmark config") + Key("enter"),
         "bookmark macros": Function(enable_command_mode) + Text(":OpenBookmark macros") + Key("enter"),
-        "bookmark journal": Function(enable_command_mode) + Text(":OpenBookmark journal") + Key("enter"),
+         "bookmark journal": Function(enable_command_mode) + Text(":OpenBookmark journal") + Key("enter"),
         #windowing
         "[next] window": Function(enable_command_mode) + Key("c-w, w"),
         "[switch] window": Function(enable_command_mode) + Key("c-w, w"),
@@ -82,25 +72,7 @@ commandMode = MappingRule(
 grammarCommand.add_rule(commandMode)
 grammarCommand.load()
 
-insertMode = MappingRule(
-    mapping={
-        "(command [mode]|press escape)": Function(enable_command_mode),
-    },
-    extras=[
-        IntegerRef("n", 1, 100),
-        Dictation("text"),
-    ],
-    defaults={
-        "n": 1
-    }
-)
-
-grammarInsert.add_rule(insertMode)
-grammarInsert.load()
-
 def unload():
     global grammarCommand
-    global grammarInsert
     if grammarCommand: grammarCommand.unload()
     grammarCommand = None
-    if grammarInsert: grammarInsert.unload()
