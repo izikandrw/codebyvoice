@@ -1,3 +1,4 @@
+#hi
 try:
     import pkg_resources
     pkg_resources.require("dragonfly >= 0.6.5beta1.dev-r99")
@@ -25,6 +26,7 @@ import function_keys as functionKeys
 import navigation_commands as navigationCommands
 import editing_commands as editingCommands
 import letters
+import special_characters as specialCharacters
 
 #---------------------------------------------------------------------------
 # Set up this module's configuration.
@@ -38,6 +40,7 @@ finalDictionary.update(functionKeys.map)
 finalDictionary.update(navigationCommands.map)
 finalDictionary.update(editingCommands.map)
 finalDictionary.update(letters.map)
+finalDictionary.update(specialCharacters.map)
 
 config.cmd.map    = Item( finalDictionary,
     namespace={
