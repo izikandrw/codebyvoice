@@ -24,6 +24,7 @@ from format import (
 import function_keys as functionKeys
 import navigation_commands as navigationCommands
 import editing_commands as editingCommands
+import letters
 
 #---------------------------------------------------------------------------
 # Set up this module's configuration.
@@ -36,6 +37,7 @@ finalDictionary = {}
 finalDictionary.update(functionKeys.map)
 finalDictionary.update(navigationCommands.map)
 finalDictionary.update(editingCommands.map)
+finalDictionary.update(letters.map)
 
 config.cmd.map    = Item( finalDictionary,
     namespace={
