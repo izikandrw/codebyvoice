@@ -27,6 +27,7 @@ import navigation_commands as navigationCommands
 import editing_commands as editingCommands
 import letters
 import special_characters as specialCharacters
+import generalProgrammingCommands
 
 #---------------------------------------------------------------------------
 # Set up this module's configuration.
@@ -41,6 +42,7 @@ finalDictionary.update(navigationCommands.map)
 finalDictionary.update(editingCommands.map)
 finalDictionary.update(letters.map)
 finalDictionary.update(specialCharacters.map)
+finalDictionary.update(generalProgrammingCommands.map)
 
 config.cmd.map    = Item( finalDictionary,
     namespace={

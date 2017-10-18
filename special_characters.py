@@ -13,5 +13,7 @@ map = {
   "slash":              Key("slash"),
   "equal":              Key("equal"),
   "plus":               Key("plus"),
-  "backslash":          Key("backslash")
+  "backslash":          Key("backslash"),
+  "greater than":       Key("greaterthan"),
+  "less than":          Key("lessthan")
 }
