@@ -35,7 +35,8 @@ rules = MappingRule(
       "collapse": Key("c-minus"),
       "call stack": Key("ca-c"),
       "history": Key("cs-h"),
-      "execute [sql]": Key("cs-e")
+      "execute [sql]": Key("cs-e"),
+      "whitespace": Key("c-r, c-w")
       },
 
     extras = [

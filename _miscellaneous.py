@@ -7,7 +7,7 @@ rules = MappingRule(
     mapping = {
       "personal email": Text("izikandrw@gmail.com"),
       "business email": Text("isaac.stennett@goftwaresolutions.com"),
-      "daily script": Text("todoist.com"),
+      "daily script": Key("c-l") + Text("todoist.com") + Key("enter"),
       # filesystem bookmarks
       "desktop": Text("cd /mnt/c/Users/isaac/Desktop/") + Key("enter"),
       "journal": Text("cd /mnt/c/Users/isaac/Google\ Drive/Information/") + Key("enter"),

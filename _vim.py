@@ -35,27 +35,35 @@ commandMode = MappingRule(
         "save as": Key("colon, w, space"),
         "undo": Function(enable_command_mode) + Key("u"),
         "quit": Function(enable_command_mode) + Text(":q") + Key("enter"),
+        "quit all": Function(enable_command_mode) + Text(":qa") + Key("enter"),
         "force quit": Function(enable_command_mode) + Text(":q!") + Key("enter"),
         "force quit all": Function(enable_command_mode) + Text(":qa!") + Key("enter"),
         "yank": Function(enable_command_mode) + Key("y, y"),
         "yank all": Function(enable_command_mode) + Key("g, g, y, G"),
         "insert": Function(enable_command_mode) + Key("i"),
-        #Navigation
+        #navigation
         "top": Function(enable_command_mode) + Key("H"),
         "mid": Function(enable_command_mode) + Key("M"),
         "bottom": Function(enable_command_mode) + Key("L"),
+        "doc home": Function(enable_command_mode) + Key("g, g"),
+        "doc end": Function(enable_command_mode) + Key("s-g"),
+        "find [<text>]": Function(enable_command_mode) + Key("slash") + Text("%(text)s") + Key("enter"),
+        "next result": Function(enable_command_mode) + Key("n"),
+        "previous result": Function(enable_command_mode) + Key("N"),
+        "end find": Function(enable_command_mode) + Text(":noh") + Key("enter"),
         #NERDTree
         "open [file]": Key("o"),
         "tree": Function(enable_command_mode) + Text(":NERDTreeToggle") + Key("enter"),
         "bookmark config": Function(enable_command_mode) + Text(":OpenBookmark config") + Key("enter"),
         "bookmark macros": Function(enable_command_mode) + Text(":OpenBookmark macros") + Key("enter"),
-         "bookmark journal": Function(enable_command_mode) + Text(":OpenBookmark journal") + Key("enter"),
+        "bookmark journal": Function(enable_command_mode) + Text(":OpenBookmark journal") + Key("enter"),
+        "bookmark memory": Function(enable_command_mode) + Text(":OpenBookmark memory") + Key("enter"),
         #windowing
         "[next] window": Function(enable_command_mode) + Key("c-w, w"),
         "[switch] window": Function(enable_command_mode) + Key("c-w, w"),
         #buffers
         "buffer list": Function(enable_command_mode) + Text(":ls") + Key("enter"),
-        #tabs
+        #tabxs
         "next tab": Function(enable_command_mode) + Key("g, t"),
         "previous tab": Function(enable_command_mode) + Key("g, T"),
         "close tab": Function(enable_command_mode) + Text(":tabclose") + Key("enter")
