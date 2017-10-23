@@ -28,6 +28,7 @@ import editing_commands as editingCommands
 import letters
 import special_characters as specialCharacters
 import generalProgrammingCommands
+import vim
 
 #---------------------------------------------------------------------------
 # Set up this module's configuration.
@@ -43,6 +44,7 @@ finalDictionary.update(editingCommands.map)
 finalDictionary.update(letters.map)
 finalDictionary.update(specialCharacters.map)
 finalDictionary.update(generalProgrammingCommands.map)
+finalDictionary.update(vim.map)
 
 config.cmd.map    = Item( finalDictionary,
     namespace={
