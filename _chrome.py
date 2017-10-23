@@ -15,6 +15,8 @@ rules = MappingRule(
       "search tabs": Key("T"),
       "find": Key("c-f"),
       "console": Key("cs-j"),
+      "next tool": Key("c-rightbracket"),
+      "previous tool": Key("c-leftbracket"),
       "developer tools": Key("cs-i"),
       "close tab": Key("c-w"),
       "escape": Key('escape'),

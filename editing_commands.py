@@ -8,6 +8,8 @@ map = {
     "tab [<n>]":                        Key("tab:%(n)d"),
     "delete [<n>]":                     release + Key("del:%(n)d"),
     "delete [<n> | this] (line|lines)": release + Key("home, s-down:%(n)d, del"),
+    "delete [<n>] words":               release + Key("ctrl:down, shift:down, left:%(n)d, del"),
+    "select [<n>] words":               release + Key("ctrl:down, shift:down, left:%(n)d"),
     "backspace [<n>]":                  release + Key("backspace:%(n)d"),
     "paste":                            release + Key("c-v"),
     "duplicate <n>":                    release + Key("c-c, c-v:%(n)d"),

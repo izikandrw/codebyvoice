@@ -9,7 +9,7 @@ map = {
   "hashtag":            Key("hash"),
   "dollar":             Key("dollar"),
   "percent":            Key("percent"),
-  "and":                Key("ampersand"),
+  "ampersand":          Key("ampersand"),
   "slash":              Key("slash"),
   "equal":              Key("equal"),
   "plus":               Key("plus"),

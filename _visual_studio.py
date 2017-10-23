@@ -11,10 +11,11 @@ rules = MappingRule(
       "[start] debug" : Key("f5"),
       "stop debug": Key("s-f5"),
       "open file": Key("c-comma"),
+      # search commands
       "find file": Key("c-comma"),
       "search": Key("c-f"),
-      "[solution] explorer": Key("ca-l"),
-      "server explorer": Key("ca-s"),
+      "all refs": Key("s-f12"),
+      # debug commands
       "continue": Key("f5"),
       "step": Key("f10"),
       "step into": Key("f11"),
@@ -23,12 +24,20 @@ rules = MappingRule(
       "line number": Key("c-g"),
       "comment": Key("c-k") + Key("c-c"),
       "uncomment": Key("c-k") + Key("c-u"),
+      # tool windows
       "immediate": Key("ca-i"),
+      "[solution] explorer": Key("ca-l"),
+      "server explorer": Key("ca-s"),
       "call stack": Key("ca-c"),
       "next pane": Key("a-f6"),
       "close tool": Key("s-escape"),
       "pending": Key("c-k") + Key("c"),
       "rebuild": Key("cs-r"),
+      "code": Key("f7"),
+      #window navigation
+      "next tab": Key("c-k") + Key("c-n"),
+      "previous tab": Key("c-k") + Key("c-p"),
+      #editing commands
       "delete line": Key("cs-l"),
       "delete until end": Key("cs-w"),
       "close all": Key("cs-o"),
