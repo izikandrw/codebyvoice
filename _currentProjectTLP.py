@@ -10,7 +10,8 @@ rules = MappingRule(
       "data import log view": Text("tail -f /mnt/c/Users/isaac/Desktop/Debug/log/reliant-sync-log.txt") + Key("enter"),
       "data import log directory": Text("cd /mnt/c/Users/isaac/Desktop/Debug/log/") + Key("enter"),
       "data import install": Text("cp -r /mnt/c/Users/isaac/Documents/SourceCode/Constellation/TLP.Reliant.AgentPortalImporter/bin/Debug/ /mnt/c/Users/isaac/Desktop/") + Key("enter"),
-      "constellation source code": Text("cd /mnt/c/Users/isaac/Documents/SourceCode/Constellation/") + Key("enter")
+      "constellation source code": Text("cd /mnt/c/Users/isaac/Documents/SourceCode/Constellation/") + Key("enter"),
+      "update database": Key("cs-backslash") + Text(".\TLP.Sync.Server\ManualDeploy.ps1") + Key("enter")
       },
     extras = [
         Dictation("text"),

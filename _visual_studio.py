@@ -26,6 +26,7 @@ rules = MappingRule(
       "uncomment": Key("c-k") + Key("c-u"),
       # tool windows
       "immediate": Key("ca-i"),
+      "power shell": Key("cs-backslash"),
       "[solution] explorer": Key("ca-l"),
       "server explorer": Key("ca-s"),
       "call stack": Key("ca-c"),

@@ -7,7 +7,7 @@ noSpaceNoCaps = Mimic("\\no-caps-on") + Mimic("\\no-space-on")
 rules = MappingRule(
     name = "ssms",
     mapping = {
-      "run": Key("c-r")
+      "execute": Key("c-r")
       },
     extras = [
         Dictation("text"),

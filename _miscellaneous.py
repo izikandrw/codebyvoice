@@ -14,7 +14,9 @@ rules = MappingRule(
       "today": Text("/mnt/c/Users/isaac/Google\ Drive/shellScripts/makeNewJournalEntry.sh") + Key("enter"),
       "source code": Text("cd /mnt/c/Users/isaac/Documents/SourceCode") + Key("enter"),
       "macros": Text("cd /mnt/c/NatLink/NatLink/MacroSystem") + Key("enter"),
-      "vim home": Text("cd /home/isaac/.vim") + Key("enter")
+      "vim home": Text("cd /home/isaac/.vim") + Key("enter"),
+      "app backend": Text("api") + Key("enter"),
+      "app frontend": Text("client") + Key("enter")
     },
     extras = [
         Dictation("text"),
