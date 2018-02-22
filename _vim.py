@@ -11,6 +11,11 @@ noSpaceNoCaps = Mimic("\\no-caps-on") + Mimic("\\no-space-on")
 rules = MappingRule(
     name = "bashVim",
     mapping = {
+        "insert line before": Function(enable_command_mode) + Key("O"),
+        "insert line after": Function(enable_command_mode) + Key("o"),
+        "yank": Function(enable_command_mode) + Key("y, y"),
+        "yank all": Function(enable_command_mode) + Key("g, g, y, G"),
+        "duplicate line": Function(enable_command_mode) + Key("y, y, p"),
         "paste [(line|lines)]": Function(enable_command_mode) + Key("p"),
         "delete line": Function(enable_command_mode) + Key("d, d"),
         "doc home": Function(enable_command_mode) + Key("g, g"),
@@ -27,6 +32,11 @@ rules = MappingRule(
         "quit all": Function(enable_command_mode) + Text(":qa") + Key("enter"),
         "force quit": Function(enable_command_mode) + Text(":q!") + Key("enter"),
         "force quit all": Function(enable_command_mode) + Text(":qa!") + Key("enter"),
+        #text manipulation
+        "append [text]": Function(enable_command_mode, char="a"),
+        "line append [text]": Function(enable_command_mode) + Key("s-a"),
+        "line prepend [text]": Function(enable_command_mode) + Key("I"), 
+        "remove character": Function(enable_command_mode) + Key("x"),
         #NERDTree
         "open [file]": Key("o"),
         "tree": Function(enable_command_mode) + Text(":NERDTreeToggle") + Key("enter"),
@@ -44,7 +54,13 @@ rules = MappingRule(
         #tabs
         "next tab": Function(enable_command_mode) + Key("g, t"),
         "previous tab": Function(enable_command_mode) + Key("g, T"),
-        "close tab": Function(enable_command_mode) + Text(":tabclose") + Key("enter")
+        "close tab": Function(enable_command_mode) + Text(":tabclose") + Key("enter"),
+        #navigation
+        "page up": Key("c-b, c-b"),
+        "page down": Key("c-f"),
+        "top": Function(enable_command_mode) + Key("H"),
+        "mid": Function(enable_command_mode) + Key("M"),
+        "bottom": Function(enable_command_mode) + Key("L")
     },
 
     extras = [

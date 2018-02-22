@@ -8,6 +8,7 @@ noSpaceNoCaps = Mimic("\\no-caps-on") + Mimic("\\no-space-on")
 rules = MappingRule(
     name = "bashVim",
     mapping = {
+      "tim": Text("vim") + Key("enter"),
       "first tab": Key("c-1"),
       "second tab": Key("c-2"),
       "third tab": Key("c-3"),
