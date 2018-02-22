@@ -3,7 +3,7 @@ from dragonfly import (Grammar, AppContext, MappingRule, Dictation, Key, Text, I
 def enable_command_mode():
     Key("escape").execute()
 
-context = AppContext(executable="bash")
+context = AppContext(executable="ConEmu64")
 grammar = Grammar("bashVim", context=context)
 
 noSpaceNoCaps = Mimic("\\no-caps-on") + Mimic("\\no-space-on")
