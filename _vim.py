@@ -1,3 +1,5 @@
+# these are vim commands we don't need to chain together (don't need to include in multiedit.py)
+
 from dragonfly import (Grammar, AppContext, MappingRule, Dictation, Key, Text, Integer, Mimic, Function)
 
 def enable_command_mode():
@@ -11,19 +13,12 @@ noSpaceNoCaps = Mimic("\\no-caps-on") + Mimic("\\no-space-on")
 rules = MappingRule(
     name = "bashVim",
     mapping = {
-        "insert line before": Function(enable_command_mode) + Key("O"),
-        "insert line after": Function(enable_command_mode) + Key("o"),
-        "yank": Function(enable_command_mode) + Key("y, y"),
-        "yank all": Function(enable_command_mode) + Key("g, g, y, G"),
-        "duplicate line": Function(enable_command_mode) + Key("y, y, p"),
         "paste [(line|lines)]": Function(enable_command_mode) + Key("p"),
         "delete line": Function(enable_command_mode) + Key("d, d"),
-        "doc home": Function(enable_command_mode) + Key("g, g"),
         "find [<text>]": Function(enable_command_mode) + Key("slash") + Text("%(text)s") + Key("enter"),
         "next result": Function(enable_command_mode) + Key("n"),
         "previous result": Function(enable_command_mode) + Key("N"),
         "end find": Function(enable_command_mode) + Text(":noh") + Key("enter"),
-        "doc end": Function(enable_command_mode) + Key("s-g"),
         "save": Function(enable_command_mode) + Key("colon, w, enter"),
         "save and exit": Function(enable_command_mode) + Key("colon, w, q, enter"),
         "save as": Key("colon, w, space"),
@@ -32,13 +27,9 @@ rules = MappingRule(
         "quit all": Function(enable_command_mode) + Text(":qa") + Key("enter"),
         "force quit": Function(enable_command_mode) + Text(":q!") + Key("enter"),
         "force quit all": Function(enable_command_mode) + Text(":qa!") + Key("enter"),
-        #text manipulation
-        "append [text]": Function(enable_command_mode, char="a"),
-        "line append [text]": Function(enable_command_mode) + Key("s-a"),
-        "line prepend [text]": Function(enable_command_mode) + Key("I"), 
-        "remove character": Function(enable_command_mode) + Key("x"),
         #NERDTree
         "open [file]": Key("o"),
+        "open split [file]": Key("s"),
         "tree": Function(enable_command_mode) + Text(":NERDTreeToggle") + Key("enter"),
         "bookmark config": Function(enable_command_mode) + Text(":OpenBookmark config") + Key("enter"),
         "bookmark macros": Function(enable_command_mode) + Text(":OpenBookmark macros") + Key("enter"),
@@ -55,12 +46,6 @@ rules = MappingRule(
         "next tab": Function(enable_command_mode) + Key("g, t"),
         "previous tab": Function(enable_command_mode) + Key("g, T"),
         "close tab": Function(enable_command_mode) + Text(":tabclose") + Key("enter"),
-        #navigation
-        "page up": Key("c-b, c-b"),
-        "page down": Key("c-f"),
-        "top": Function(enable_command_mode) + Key("H"),
-        "mid": Function(enable_command_mode) + Key("M"),
-        "bottom": Function(enable_command_mode) + Key("L")
     },
 
     extras = [
