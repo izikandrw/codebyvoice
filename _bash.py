@@ -1,6 +1,6 @@
 from dragonfly import (Grammar, AppContext, MappingRule, Dictation, Key, Text, Integer, Mimic, Function)
 
-context = AppContext(executable="bash")
+context = AppContext(executable="ConEmu64")
 grammar = Grammar("bash", context=context)
 noSpaceNoCaps = Mimic("\\no-caps-on") + Mimic("\\no-space-on")
 
