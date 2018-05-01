@@ -36,6 +36,8 @@ rules = MappingRule(
         "bookmark journal": Function(enable_command_mode) + Text(":OpenBookmark journal") + Key("enter"),
         "bookmark memory": Function(enable_command_mode) + Text(":OpenBookmark memory") + Key("enter"),
         "bookmark desktop": Function(enable_command_mode) + Text(":OpenBookmark desktop") + Key("enter"),
+        "bookmark map": Function(enable_command_mode) + Text(":OpenBookmark mapp") + Key("enter"),
+        "bookmark meb": Function(enable_command_mode) + Text(":OpenBookmark meb") + Key("enter"),
         "bookmark log": Function(enable_command_mode) + Text(":OpenBookmark log") + Key("enter"),
         #windowing
         "[next] window": Function(enable_command_mode) + Key("c-w, w"),
@@ -46,6 +48,9 @@ rules = MappingRule(
         "next tab": Function(enable_command_mode) + Key("g, t"),
         "previous tab": Function(enable_command_mode) + Key("g, T"),
         "close tab": Function(enable_command_mode) + Text(":tabclose") + Key("enter"),
+        #navigation
+        "page up": Key("c-b, c-b"),
+        "page down": Key("c-f"),
     },
 
     extras = [

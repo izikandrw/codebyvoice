@@ -7,6 +7,7 @@ rules = MappingRule(
     mapping = {
       "get status": Text("git status") + Key("enter"),
       "get add all": Text("git add .") + Key("enter"),
+      "get diff all": Text("git diff *") + Key("enter"),
       "get commit <text>": Text("git commit -m \"%(text)s\""),
       "get push": Text("git push") + Key("enter")
     },
